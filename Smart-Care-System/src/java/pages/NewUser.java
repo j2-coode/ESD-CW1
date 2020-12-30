@@ -7,14 +7,17 @@ package pages;
 
 import java.sql.*;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-//import model.Jdbc;
 import model.MyJBDC;
-
 
 /**
  *
@@ -34,33 +37,28 @@ public class NewUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
         
+        //Get user input from add0
+        String username = (String)request.getParameter("username");
+        String password= (String)request.getParameter("password");
+        String role= (String)request.getParameter("role");
         
-        HttpSession session = request.getSession(false);
+        //Set variables to user input
+        com.UserInput e=new com.UserInput();
+        e.setUsername(username);
+        e.setPassword(password);
+        e.setRole(role);
         
-        String [] query = new String[3];
-        query[0] = (String)request.getParameter("username");
-        query[1] = (String)request.getParameter("password");
-        query[2] = (String)request.getParameter("role");
-        //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-      
-        MyJBDC jdbc = (MyJBDC)session.getAttribute("dbbean"); 
-        
-        if (jdbc == null)
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
-        
-        if(query[0].equals("") ) {
-            request.setAttribute("message", "Username cannot be NULL");
-        } /*
-        else if(MyJBDC.exists(query[0])){
-            request.setAttribute("message", query[0]+" is already taken as username");
+        int status=MyJBDC.saveuser(e);
+        if(status>0){
+            out.println("<p>New User added successfully!</p>");
+            request.getRequestDispatcher("LoginSuccess.jsp").include(request, response);
         }
-        else {
-            MyJBDC.insert(query);
-            request.setAttribute("message", query[0]+" is added");
-        }*/
-         
-        request.getRequestDispatcher("/WEB-INF/add0.jsp").forward(request, response);
+        else{
+            out.println("Error unable to add user");
+        }
+        out.close();     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

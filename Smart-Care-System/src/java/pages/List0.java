@@ -5,13 +5,20 @@
  */
 package pages;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import java.sql.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.MyJBDC;
 
 /**
  *
@@ -35,18 +42,25 @@ public static void main(String[] args) {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet List0</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet List0 at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        String option = request.getParameter("option");
+        
+        
+        PrintWriter out=response.getWriter();
+        out.println("<a href='index.html'>Add New Clients</a>");
+        out.println("<h1>Client List</h1>");
+        
+        List<com.UserInput> list=model.MyJBDC.getAllPatients();
+        out.print("<table border='1' width='100%'");
+        out.print("<tr><th>Id</th><th>Name</th><th>Address</th><th>Type</th><th>Username</th>");
+        for(com.UserInput e:list){
+            out.print("<tr><td>"+e.getID()+"</td><td>"+e.getName()+"</td><td>"+e.getAddress()+"</td><td>"+e.getType()+"</td><td>"+e.getUsername()+"</td></tr>");
+
         }
+        out.print("</table>");
+
+        out.close();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -40,7 +40,6 @@ public class RequestLoggingFilter implements Filter {
 			String value = request.getParameter(name);
 			this.context.log(req.getRemoteAddr() + "::Request Params::{"+name+"="+value+"}");
 		}
-		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null){
 			for(Cookie cookie : cookies){
@@ -50,7 +49,6 @@ public class RequestLoggingFilter implements Filter {
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
-
 	public void destroy() {
 		//we can close resources here
 	}

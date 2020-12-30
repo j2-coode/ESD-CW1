@@ -4,3 +4,30 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<html>
+
+    <head>
+        <link rel="icon" href="https://www.seniorpedia.org/wp-content/uploads/2015/08/seniorpediaicons_health.png">
+        <title>Smart Care - Login</title>
+    </head>
+    <body>
+        <h2>Welcome to the Smart Care system</h2>
+        <h3>Please enter you login credentials below:</h3>
+        <form action="LoginServlet.do" method="post">
+            <table>
+                <tr>
+                    <td>Username: <input type="text" name="username"> </td>
+                </tr>
+                <tr>
+                    <td>Password: <input type="password" name="password"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Login"> </td>
+                </tr>
+            </table>
+        </form>   
+        <form action="UserServlet" method="post">
+            <input type="submit" name="option" value="Register">
+        </form>       
+    </body>
+</html>

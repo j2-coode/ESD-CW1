@@ -6,19 +6,10 @@
 package com;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import model.MyJBDC;
 
 /**
  *
@@ -26,56 +17,23 @@ import model.MyJBDC;
  */
 public class UserServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String qry = "select * from MyDB";
-       
-        HttpSession session = request.getSession();        
-        response.setContentType("text/html;charset=UTF-8");
-        
-        
-        MyJBDC dbBean = new MyJBDC();      
-        //MyJBDC.connect((Connection)request.getServletContext().getAttribute("connection"));
-        
-        /*
-        if((Connection)request.getServletContext().getAttribute("connection")==null)
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
-        
-        if (request.getParameter("option").equals("TEST")){
-            String msg="first_name";
-            try {
-                msg = dbBean.retrieve(qry);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            request.setAttribute("first_name", msg);
-            request.getRequestDispatcher("/WEB-INF/results.jsp").forward(request, response);
-        } 
-        */
-        if(request.getParameter("option").equals("list0")){
+
+        if (request.getParameter("option").equals("list0")) {
             request.getRequestDispatcher("/WEB-INF/list0.jsp").forward(request, response);
-        } 
-        else if(request.getParameter("option").equals("add0")){
-            request.getRequestDispatcher("/WEB-INF/add0.jsp").forward(request, response);    
-        }
-        else if(request.getParameter("option").equals("list1")){
-            request.getRequestDispatcher("/WEB-INF/list0.jsp").forward(request, response);    
-        }        
-        else if(request.getParameter("option").equals("calendar0")){
-            request.getRequestDispatcher("/WEB-INF/calendar0.jsp").forward(request, response);    
-        }
-        else {
+            
+        } else if (request.getParameter("option").equals("addUser")) {
+            request.getRequestDispatcher("/WEB-INF/addUser.jsp").forward(request, response);
+            
+        } else if (request.getParameter("option").equals("Register")) {
+            request.getRequestDispatcher("/WEB-INF/addPatient.jsp").forward(request, response);
+            
+        } else if (request.getParameter("option").equals("calendar0")) {
+            request.getRequestDispatcher("/WEB-INF/calendar0.jsp").forward(request, response);
+        } else {
             request.setAttribute("option", "error");
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response); 
+            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
         }
     }
 

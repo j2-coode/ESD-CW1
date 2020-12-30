@@ -6,6 +6,7 @@
 package filters;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,34 +23,34 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 
-	private ServletContext context;
-	
-	public void init(FilterConfig fConfig) throws ServletException {
-		this.context = fConfig.getServletContext();
-		this.context.log("AuthenticationFilter initialized");
-	}
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    private ServletContext context;
 
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		
-		String uri = req.getRequestURI();
-		this.context.log("Requested Resource::"+uri);
-		
-		HttpSession session = req.getSession(false);
-		
-		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet.do"))){
-			this.context.log("Unauthorized access request");
-			res.sendRedirect("login.html");
-		}else{
-			// pass the request along the filter chain
-			chain.doFilter(request, response);
-		}
-	}
+    public void init(FilterConfig fConfig) throws ServletException {
+        this.context = fConfig.getServletContext();
+        this.context.log("AuthenticationFilter initialized");
+    }
 
-	public void destroy() {
-		//close any resources here
-	}
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        //PrintWriter out = response.getWriter();
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        String uri = req.getRequestURI();
+        this.context.log("Requested Resource::" + uri);
+
+        HttpSession session = req.getSession(false);
+
+        if (session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet.do"))) {
+            this.context.log("Unauthorized access request");
+            res.sendRedirect("index.html");
+        } else {
+            // pass the request along the filter chain
+            chain.doFilter(request, response);
+        }
+    }
+
+    public void destroy() {
+        //close any resources here
+    }
 
 }

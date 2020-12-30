@@ -14,7 +14,14 @@
     <body>
         <jsp:include page="header.jsp"/>
         <h1>List</h1>
-        
-    
+        <form method="POST" action="List0">  
+        <table>
+            <tr>
+                NHS or Private:
+            <input type='radio' name='list' value='NHS'> NHS
+            <input type='radio' name='list' value='Private'> Private
+            </tr>
+        </table>
+            <td> <input type="submit" value="Confirm"/></td>
     </body>
 </html>

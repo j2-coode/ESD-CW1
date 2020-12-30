@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>Smart-Care-System</display-name>   
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>filters.AuthenticationFilter</filter-class>
@@ -17,7 +16,7 @@
         <filter-name>RF</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
-    </filter-mapping> 
+    </filter-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.LogoutServlet</servlet-class>
@@ -58,7 +57,6 @@
         <servlet-name>NewUser</servlet-name>
         <url-pattern>/NewUser.do</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>List0</servlet-name>
         <url-pattern>/List0</url-pattern>
@@ -66,12 +64,23 @@
     <servlet>
         <servlet-name>List0</servlet-name>
         <servlet-class>pages.List0</servlet-class>
-    </servlet>  
+    </servlet>
     <servlet-mapping>
         <servlet-name>List0</servlet-name>
         <url-pattern>/List0.do</url-pattern>
     </servlet-mapping>
-       
+    <servlet>
+        <servlet-name>NewPatient</servlet-name>
+        <servlet-class>pages.NewPatient</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewPatient</servlet-name>
+        <url-pattern>/NewPatient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPatient</servlet-name>
+        <url-pattern>/NewPatient.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             20

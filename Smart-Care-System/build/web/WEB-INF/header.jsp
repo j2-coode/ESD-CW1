@@ -6,10 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <main>
-  <%--  <form action="LogoutServlet" method="post">
-        <input type="submit" value="Logout">
-  --%>
-    </main>
-</html>
+<link rel="icon" href="https://www.seniorpedia.org/wp-content/uploads/2015/08/seniorpediaicons_health.png">
+ <a href="LoginSuccess.jsp"> Back to Main Menu </a>
+ <br>
