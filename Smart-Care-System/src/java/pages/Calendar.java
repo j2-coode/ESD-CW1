@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com;
+package pages;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,25 +16,31 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ben
  */
-public class UserServlet extends HttpServlet {
+public class Calendar extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        if (request.getParameter("option").equals("list0")) {
-            request.getRequestDispatcher("/WEB-INF/list0.jsp").forward(request, response);
-            
-        } else if (request.getParameter("option").equals("addUser")) {
-            request.getRequestDispatcher("/WEB-INF/addUser.jsp").forward(request, response);
-            
-        } else if (request.getParameter("option").equals("Register")) {
-            request.getRequestDispatcher("/WEB-INF/addPatient.jsp").forward(request, response);
-            
-        } else if (request.getParameter("option").equals("calendar")) {
-            request.getRequestDispatcher("/WEB-INF/calendar.jsp").forward(request, response);
-        } else {
-            request.setAttribute("option", "error");
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Calendar</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Calendar at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

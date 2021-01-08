@@ -13,7 +13,7 @@
         <title>Login Success Page</title>
     </head>
     <body>
-        <%
+        <%--
             //allow access only if session exists
             String user = (String) session.getAttribute("user");
             String userName = null;
@@ -25,10 +25,10 @@
                     if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
                 }
             }
-        %>
+        --%>
         
         
-        <h2>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h2>
+        <h2>Hi fucker, Login successful. Your Session ID=1</h2>
         <h3> Please select one of the following options: <h3>
         <form method="post" action="UserServlet"> 
         List options:</h4> 
@@ -37,8 +37,8 @@
         <h4>Add options:</h4>
             <input type="radio" name="option" value="addUser">Add a new Doctor or Nurse user <br>
         <h4>Calendar options:</h4> 
-            <input type="radio" name="option" value="calendar0">Book an appointment with a Doctor <br>
-            <input type="radio" name="option" value="calendar0">Check daily surgery schedule <br>           
+            <input type="radio" name="option" value="calendar">Book an appointment with a Doctor <br>
+            <input type="radio" name="option" value="calendar">Check daily surgery schedule <br>           
 
             <input type=submit value="Confirm"> <br />
             </form>

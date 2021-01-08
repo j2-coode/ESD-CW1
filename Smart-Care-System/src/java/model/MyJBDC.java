@@ -84,17 +84,18 @@ public class MyJBDC {
         return status;
     }
     public static List<com.UserInput> getAllPatients(){
-        List<com.UserInput> list=new ArrayList<com.UserInput>();
-        
+        List list=new ArrayList();
         try{
             Connection con=MyJBDC.getConnection();
-            //PreparedStatement ps=con.prepareStatement("select * from APP.CLIENTS");
             
             PreparedStatement ps=con.prepareStatement("select * from APP.CLIENTS where CTYPE = 'NHS'");
-           
+            
+            //PreparedStatement ps=con.prepareStatement("select * from APP.CLIENTS where CTYPE = 'Private'");
+            
             ResultSet rs=ps.executeQuery();
+            
             while(rs.next()){
-                com.UserInput e=new com.UserInput();
+                com.UserInput e= new com.UserInput();
                 e.setID(rs.getInt(1));
                 e.setUsername(rs.getString(2));
                 e.setName(rs.getString(3));
@@ -103,7 +104,7 @@ public class MyJBDC {
                 list.add(e);
             }
             con.close();
-        }catch(Exception e){e.printStackTrace();}
+        }catch(Exception x){x.printStackTrace();}
         return list;
     }
 }

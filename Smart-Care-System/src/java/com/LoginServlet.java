@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
         UserInput e = new UserInput();
         e.setUsername(username);
         e.setPassword(password);
+       
 
         int status = model.MyJBDC.loginauth(e);
         if (status > 0) {

@@ -18,8 +18,8 @@
         <table>
             <tr>
                 NHS or Private:
-            <input type='radio' name='list' value='NHS'> NHS
-            <input type='radio' name='list' value='Private'> Private
+            <input type='radio' name='type' value='NHS'> NHS
+            <input type='radio' name='type' value='Private'> Private
             </tr>
         </table>
             <td> <input type="submit" value="Confirm"/></td>

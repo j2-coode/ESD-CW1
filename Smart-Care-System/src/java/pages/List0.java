@@ -42,23 +42,17 @@ public static void main(String[] args) {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String option = request.getParameter("option");
-        
-        
         PrintWriter out=response.getWriter();
-        out.println("<a href='index.html'>Add New Clients</a>");
-        out.println("<h1>Client List</h1>");
-        
-        List<com.UserInput> list=model.MyJBDC.getAllPatients();
+
         out.print("<table border='1' width='100%'");
         out.print("<tr><th>Id</th><th>Name</th><th>Address</th><th>Type</th><th>Username</th>");
+        List<com.UserInput> list = MyJBDC.getAllPatients();
+        
         for(com.UserInput e:list){
             out.print("<tr><td>"+e.getID()+"</td><td>"+e.getName()+"</td><td>"+e.getAddress()+"</td><td>"+e.getType()+"</td><td>"+e.getUsername()+"</td></tr>");
 
         }
         out.print("</table>");
-
         out.close();
         
     }
